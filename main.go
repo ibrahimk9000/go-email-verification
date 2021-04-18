@@ -12,13 +12,13 @@ import (
 
 func main() {
 	r := mux.NewRouter()
-	r.HandleFunc("/mail/{mail}", emailfunc)
-	r.HandleFunc("/verification/{verification}/", verifyfunc)
+	r.HandleFunc("/mail/{mail}", emailHandler)
+	r.HandleFunc("/verification/{verification}/", verifyHandler)
 	log.Fatal(http.ListenAndServe(":8000", r))
 
 }
 
-func emailfunc(w http.ResponseWriter, r *http.Request) {
+func emailHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 
 	w.WriteHeader(http.StatusOK)
@@ -30,10 +30,10 @@ func emailfunc(w http.ResponseWriter, r *http.Request) {
 
 	vs := false
 	if exist(hashmail) {
-		vs = checkvalue(hashmail)
+		vs = checkValue(hashmail)
 	} else {
-		addkey(hashmail)
-		err := verifcationlink(mail, r.Host)
+		addKey(hashmail)
+		err := verifcationLink(mail, r.Host)
 		if err != nil {
 			log.Println(err)
 		}
@@ -43,7 +43,7 @@ func emailfunc(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func verifyfunc(w http.ResponseWriter, r *http.Request) {
+func verifyHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 
 	w.WriteHeader(http.StatusOK)
@@ -51,7 +51,7 @@ func verifyfunc(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	token := vars["verification"]
 
-	mail, expirein, err := verifytoken(token)
+	mail, expirein, err := verifyToken(token)
 
 	if err != nil {
 		log.Println("error verify token", err)
@@ -69,8 +69,8 @@ func verifyfunc(w http.ResponseWriter, r *http.Request) {
 
 	if exist(hashmail) {
 
-		changestatus(hashmail)
-		vs = checkvalue(hashmail)
+		changeStatus(hashmail)
+		vs = checkValue(hashmail)
 
 	}
 

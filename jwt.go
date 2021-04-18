@@ -8,7 +8,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 )
 
-func createtowken(email string) (string, error) {
+func createToken(email string) (string, error) {
 
 	// the link expire in five days
 	tim := time.Now()
@@ -27,7 +27,7 @@ func createtowken(email string) (string, error) {
 
 }
 
-func verifytoken(tokenstr string) (string, int64, error) {
+func verifyToken(tokenstr string) (string, int64, error) {
 
 	cl := jwt.MapClaims{}
 	var mail string

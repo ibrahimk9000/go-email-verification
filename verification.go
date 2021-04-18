@@ -8,7 +8,7 @@ const (
 	_verification = "verification"
 )
 
-func verifcationlink(mail, host string) error {
+func verifcationLink(mail, host string) error {
 
 	messageinfo := mailmessage{
 		from:    _from,
@@ -16,7 +16,7 @@ func verifcationlink(mail, host string) error {
 		to:      []string{mail},
 	}
 
-	token, err := createtowken(mail)
+	token, err := createToken(mail)
 	if err != nil {
 		return err
 	}

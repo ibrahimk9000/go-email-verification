@@ -9,16 +9,16 @@ func exist(h string) bool {
 	}
 	return false
 }
-func checkvalue(h string) bool {
+func checkValue(h string) bool {
 	if v, ok := mp[h]; ok {
 		return v
 	}
 	return false
 }
-func addkey(h string) {
+func addKey(h string) {
 	mp[h] = false
 }
 
-func changestatus(h string) {
+func changeStatus(h string) {
 	mp[h] = true
 }
