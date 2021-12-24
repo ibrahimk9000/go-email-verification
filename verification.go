@@ -4,15 +4,11 @@ import (
 	"fmt"
 )
 
-const (
-	_verification = "verification"
-)
-
 func verifcationLink(mail, host string) error {
 
 	messageinfo := mailmessage{
-		from:    _from,
-		subject: _subject,
+		from:    from,
+		subject: subject,
 		to:      []string{mail},
 	}
 
@@ -21,7 +17,7 @@ func verifcationLink(mail, host string) error {
 		return err
 	}
 
-	link := fmt.Sprintf("%s/%s/%s", host, _verification, token)
+	link := fmt.Sprintf("%s/%s/%s", host, "verification", token)
 
 	err = Send(link, messageinfo)
 	if err != nil {

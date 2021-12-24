@@ -9,13 +9,13 @@ import (
 )
 
 const (
-	_from    = "test@gmail.com"
-	_subject = "test my app"
+	from    = "test@gmail.com"
+	subject = "test my app"
 )
 
 const (
-	_smtpadr  = "smtp.gmail.com:587"
-	_smtphost = "smtp.gmail.com"
+	smtpAdrr = "smtp.gmail.com:587"
+	smtpHost = "smtp.gmail.com"
 )
 
 type mailmessage struct {
@@ -53,10 +53,10 @@ func Send(link string, ms mailmessage) error {
 		identity: "",
 		username: emailUser,
 		password: emailPass,
-		host:     _smtphost,
+		host:     smtpHost,
 	}
 
-	err := SendMail(sa, _smtpadr, link, ms)
+	err := SendMail(sa, smtpAdrr, link, ms)
 
 	if err != nil {
 		return err
